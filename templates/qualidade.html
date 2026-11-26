@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <<title>Avaliação dos Alimentos | Bovinus Insight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>🍽️ Avaliação dos Alimentos</h1>
+        <p>Análise da qualidade dos alimentos e satisfação dos clientes</p>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>Avaliação dos alimentos</h2>
+            <p>Registre avaliações, sobras e comentários sobre os pratos.</p>
+        </section>
+
+        <section class="card">
+            <h3>Nova avaliação</h3>
+
+            {% if mensagem %}
+                <p style="color: green;">{{ mensagem }}</p>
+            {% endif %}
+
+            <form method="POST" action="/registrar-qualidade">
+
+                <label for="alimento">Nome do prato</label>
+                <input type="text" id="alimento" name="alimento"
+                       placeholder="Ex.: Picanha" required>
+
+                <br><br>
+
+                <label for="nota">Nota de qualidade (1 a 5)</label>
+                <select id="nota" name="nota" required>
+                    <option value="">Selecione</option>
+                    <option value="1">1 - Muito ruim</option>
+                    <option value="2">2 - Ruim</option>
+                    <option value="3">3 - Regular</option>
+                    <option value="4">4 - Bom</option>
+                    <option value="5">5 - Excelente</option>
+                </select>
+
+                <br><br>
+
+                <label for="sobras">Quantidade de sobras</label>
+                <select id="sobras" name="sobras" required>
+                    <option value="">Selecione</option>
+                    <option value="Poucas">Poucas</option>
+                    <option value="Moderadas">Moderadas</option>
+                    <option value="Muitas">Muitas</option>
+                </select>
+
+                <br><br>
+
+                <label for="comentario">Comentários</label>
+                <textarea id="comentario" name="comentario"
+                          placeholder="Observações sobre o prato"></textarea>
+
+                <br><br>
+
+                <button type="submit">Registrar avaliação</button>
+
+            </form>
+        </section>
+
+        <br>
+
+        <section class="card">
+            <h3>Histórico de avaliações</h3>
+
+            {% if registros %}
+                <table width="100%" cellpadding="10">
+                    <tr>
+                        <th>Prato</th>
+                        <th>Nota</th>
+                        <th>Sobras</th>
+                        <th>Comentários</th>
+                    </tr>
+
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.alimento }}</td>
+                        <td>{{ registro.nota }}/5</td>
+                        <td>{{ registro.sobras }}</td>
+                        <td>{{ registro.comentario }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Nenhuma avaliação realizada ainda.</p>
+            {% endif %}
+        </section>
+
+        <br>
+        <a href="/">← Voltar ao painel principal</a>
+
+    </main>
+
+    <footer>
+        Bovinus Insight © 2026
+    </footer>
+
+</body>
+</html>

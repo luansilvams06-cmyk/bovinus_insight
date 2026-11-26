@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Mesas | Bovinus Insight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>🪑 Gestão de Mesas</h1>
+        <p>Monitoramento da ocupação e limpeza das mesas</p>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>Monitoramento de mesas</h2>
+            <p>Registre a situação das mesas e acompanhe o tempo de limpeza.</p>
+        </section>
+
+        <section class="card">
+            <h3>Novo registro de mesa</h3>
+
+            {% if mensagem %}
+                <p style="color: green;">{{ mensagem }}</p>
+            {% endif %}
+
+            <form method="POST" action="/registrar-mesa">
+
+                <label for="mesa">Número ou identificação da mesa</label>
+                <input type="text" id="mesa" name="mesa"
+                       placeholder="Ex.: Mesa 12" required>
+
+                <br><br>
+
+                <label for="status">Situação da mesa</label>
+                <select id="status" name="status" required>
+                    <option value="">Selecione</option>
+                    <option value="Ocupada">Ocupada</option>
+                    <option value="Suja">Suja</option>
+                    <option value="Em limpeza">Em limpeza</option>
+                    <option value="Disponível">Disponível</option>
+                </select>
+
+                <br><br>
+
+                <label for="tempo">Tempo de limpeza em minutos</label>
+                <input type="number" id="tempo" name="tempo"
+                       min="0" step="1" placeholder="Ex.: 5">
+
+                <br><br>
+
+                <button type="submit">Registrar mesa</button>
+
+            </form>
+        </section>
+
+        <br>
+
+        <section class="card">
+            <h3>Histórico de mesas</h3>
+
+            {% if registros %}
+                <table width="100%" cellpadding="10">
+                    <tr>
+                        <th>Mesa</th>
+                        <th>Situação</th>
+                        <th>Tempo de limpeza</th>
+                    </tr>
+
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.mesa }}</td>
+                        <td>{{ registro.status }}</td>
+                        <td>{{ registro.tempo }} minutos</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Nenhum registro realizado ainda.</p>
+            {% endif %}
+        </section>
+
+        <br>
+        <a href="/">← Voltar ao painel principal</a>
+
+    </main>
+
+    <footer>
+        Bovinus Insight © 2026
+    </footer>
+
+</body>
+</html>
+

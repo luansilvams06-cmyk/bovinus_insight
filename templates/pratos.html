@@ -1,0 +1,162 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de pratos | Bovinus Insight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>🍽️ Análise de Pratos</h1>
+        <p>Análise da composição dos pratos</p>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>Registro de pratos</h2>
+            <p>Registre os alimentos e seus respectivos pesos para analisar a composição das refeições.</p>
+        </section>
+    
+<section class="cards">
+
+    <div class="card">
+        <h3>Alimentos registrados</h3>
+        <h2>{{ indicadores.quantidade }}</h2>
+        <p>Total de registros realizados</p>
+    </div>
+
+    <div class="card">
+        <h3>Peso total</h3>
+        <h2>{{ indicadores.peso_total }} g</h2>
+        <p>Soma dos pesos registrados</p>
+    </div>
+
+    <div class="card">
+        <h3>Categoria principal</h3>
+        <h2>{{ indicadores.categoria_principal }}</h2>
+        <p>Categoria com mais registros</p>
+    </div>
+
+</section>
+
+<br>
+
+        <section class="card">
+            <h3>Novo registro</h3>
+            {% if mensagem %}
+    <p style="color: green;">{{ mensagem }}</p>
+{% endif %}
+
+            <form method="POST" action="/registrar-prato">
+
+                <label for="alimento">Nome do alimento</label>
+                <input type="text" id="alimento" name="alimento"
+                       placeholder="Ex.: Picanha" required>
+
+                <br><br>
+
+                <label for="categoria">Categoria</label>
+                <select id="categoria" name="categoria" required>
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Carne">Carne</option>
+                    <option value="Acompanhamento">Acompanhamento</option>
+                    <option value="Salada">Salada</option>
+                    <option value="Outros">Outros</option>
+                </select>
+
+                <br><br>
+
+                <label for="peso">Peso em gramas</label>
+                <input type="number" id="peso" name="peso"
+                       placeholder="Ex.: 150" min="1" step="1" required>
+
+                <br><br>
+
+                <button type="submit">Registrar alimento</button>
+
+            </form>
+
+<br>
+
+<section class="card">
+    <h3>Alimentos registrados</h3>
+
+    {% if registros %}
+        <table width="100%" cellpadding="10">
+            <tr>
+                <th>Alimento</th>
+                <th>Categoria</th>
+                <th>Peso (g)</th>
+            </tr>
+
+            {% for registro in registros %}
+            <tr>
+                <td>{{ registro.alimento }}</td>
+                <td>{{ registro.categoria }}</td>
+                <td>{{ registro.peso }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>Nenhum alimento registrado ainda.</p>
+    {% endif %}
+</section>
+
+        </section>
+
+<section class="card" style="margin-bottom: 20px;">
+    <h3>Distribuição por categoria</h3>
+    <canvas
+    id="graficoPratos"
+    data-labels='{{ indicadores.grafico_labels | tojson }}'
+    data-valores='{{ indicadores.grafico_valores | tojson }}'>
+</canvas>
+</section>
+
+
+
+
+        <br>
+
+        <a href="/">← Voltar ao painel principal</a>
+
+    </main>
+
+    <footer>
+        Bovinus Insight © 2026
+    </footer>
+    
+    
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const canvas = document.getElementById("graficoPratos");
+const labels = JSON.parse(canvas.dataset.labels);
+const valores = JSON.parse(canvas.dataset.valores);
+
+new Chart(document.getElementById("graficoPratos"), {
+    type: "doughnut",
+    data: {
+        labels: labels,
+        datasets: [{
+            label: "Registros",
+            data: valores
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: "bottom"
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

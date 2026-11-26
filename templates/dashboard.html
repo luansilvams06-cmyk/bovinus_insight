@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bovinus Insight</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>Bovinus Insight</h1>
+        <p>Inteligência operacional para uma experiência melhor.</p>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>Painel de Controle</h2>
+            <p>Bem-vindo ao centro de inteligência operacional do Bovinu'S Grill & Beer.</p>
+        </section>
+
+
+<section class="cards">
+
+    <div class="card">
+        <h3>🍽️ Pratos cadastrados</h3>
+        <h2>{{ indicadores_pratos.quantidade }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>⚖️ Peso total registrado</h3>
+        <h2>{{ "%.1f"|format(indicadores_pratos.peso_total) }} g</h2>
+    </div>
+
+    <div class="card">
+        <h3>⏱️ Tempo médio nas filas</h3>
+        <h2>{{ indicadores_filas.media }} min</h2>
+    </div>
+
+    <div class="card">
+        <h3>⭐ Avaliações dos alimentos</h3>
+        <h2>{{ total_avaliacoes }}</h2>
+    </div>
+
+</section>
+
+
+        <section class="cards">
+
+            <div class="card">
+                <h3>🍽️ Análise de Pratos</h3>
+                <p>Analise a composição dos pratos e acompanhe os alimentos mais escolhidos.</p>
+                <a href="/modulo/pratos">Acessar módulo →</a>
+            </div>
+
+            <div class="card">
+                <h3>⏱️ Análise de Filas</h3>
+                <p>Acompanhe filas e tempos de espera durante o atendimento.</p>
+                <a href="/modulo/filas">Acessar módulo →</a>
+            </div>
+
+            <div class="card">
+                <h3>🪑 Gestão de Mesas</h3>
+                <p>Monitore a situação das mesas e o tempo de limpeza.</p>
+                <a href="/modulo/mesas">Acessar módulo →</a>
+            </div>
+
+            <div class="card">
+                <h3>⭐ Avaliação dos Alimentos</h3>
+                <p>Registre avaliações, sobras e opiniões sobre os alimentos.</p>
+                <a href="/modulo/qualidade">Acessar módulo →</a>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        Bovinus Insight © 2026 | Projeto Hackathon FMU & Bovinu'S
+    </footer>
+
+</body>
+</html>

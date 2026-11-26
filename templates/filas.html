@@ -1,0 +1,105 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análise de Filas | Bovinus Insight</title>    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>⏱️ Análise de Filas</h1>
+        <p>Análise do fluxo e tempo de espera dos clientes</p>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <h2>Monitoramento de filas</h2>
+            <p>Registre o tempo de espera nas diferentes etapas do atendimento.</p>
+        </section>
+        <section class="cards">
+
+    <div class="card">
+        <h3>Total de registros</h3>
+        <h2>{{ indicadores.quantidade }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Tempo médio de espera</h3>
+        <h2>{{ indicadores.media }} minutos</h2>
+    </div>
+
+    <div class="card">
+        <h3>Maior tempo de espera</h3>
+        <h2>{{ indicadores.maior }} minutos</h2>
+    </div>
+
+</section>
+
+        <section class="card">
+            <h3>Novo registro de espera</h3>
+
+            {% if mensagem %}
+                <p style="color: green;">{{ mensagem }}</p>
+            {% endif %}
+
+            <form method="POST" action="/registrar-fila">
+
+                <label for="etapa">Etapa do atendimento</label>
+                <select id="etapa" name="etapa" required>
+                    <option value="">Selecione</option>
+                    <option value="Buffet">Fila do buffet</option>
+                    <option value="Churrasqueira">Fila da churrasqueira</option>
+                    <option value="Mesa">Atendimento na mesa</option>
+                </select>
+
+                <br><br>
+
+                <label for="tempo">Tempo de espera em minutos</label>
+                <input type="number" id="tempo" name="tempo"
+                       min="0" step="1" placeholder="Ex.: 8" required>
+
+                <br><br>
+
+                <button type="submit">Registrar espera</button>
+
+            </form>
+        </section>
+
+        <br>
+
+        <section class="card">
+            <h3>Histórico de esperas</h3>
+
+            {% if registros %}
+                <table width="100%" cellpadding="10">
+                    <tr>
+                        <th>Etapa</th>
+                        <th>Tempo (minutos)</th>
+                    </tr>
+
+                    {% for registro in registros %}
+                    <tr>
+                        <td>{{ registro.etapa }}</td>
+                        <td>{{ registro.tempo }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                <p>Nenhum registro realizado ainda.</p>
+            {% endif %}
+        </section>
+
+        <br>
+        <a href="/">← Voltar ao painel principal</a>
+
+    </main>
+
+    <footer>
+        Bovinus Insight © 2026
+    </footer>
+
+</body>
+</html>
