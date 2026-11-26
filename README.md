@@ -161,5 +161,11 @@ Como melhorias futuras, o projeto poderá receber:
 **Desenvolvimento:** Projeto acadêmico
 
 ---
+## 🎥 Demonstração do projeto
 
+Confira o vídeo de apresentação prática do Bovinus Insight:
+
+▶️ [Assistir à demonstração no YouTube](https://youtu.be/bTxzBE2tAtA)
+
+Vídeo demonstrativo com duração de até 2 minutos, apresentando o painel principal e os quatro módulos do sistema.
 **Bovinus Insight — Inteligência operacional para uma experiência melhor.** 🐂
