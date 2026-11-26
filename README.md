@@ -168,4 +168,27 @@ Confira o vídeo de apresentação prática do Bovinus Insight:
 ▶️ [Assistir à demonstração no YouTube](https://youtu.be/bTxzBE2tAtA)
 
 Vídeo demonstrativo com duração de até 2 minutos, apresentando o painel principal e os quatro módulos do sistema.
+
+
+## 📸 Capturas de tela do sistema
+
+### Painel principal
+![Painel principal](imagens/dashboard.png)
+
+### Análise de Pratos
+![Análise de Pratos](imagens/pratos.png)
+
+### Análise de Filas
+![Análise de Filas](imagens/filas.png)
+
+### Gestão de Mesas
+![Gestão de Mesas](imagens/mesas.png)
+
+### Avaliação dos Alimentos
+![Avaliação dos Alimentos](imagens/avaliacao.png)
+
+## 📊 Apresentação do projeto
+
+[Baixar apresentação PowerPoint](apresentacao/Bovinus_Insight_Apresentacao_Atualizada_com_Espacos_para_Dashboards%20%281%29.pptx)
+
 **Bovinus Insight — Inteligência operacional para uma experiência melhor.** 🐂
