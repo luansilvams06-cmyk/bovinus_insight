@@ -29,4 +29,137 @@ Registra alimentos, categorias e pesos, permitindo acompanhar a composição dos
 ### 2. Análise de Filas
 Registra os tempos de espera no buffet, na churrasqueira e no atendimento nas mesas.
 
-### 3. Gestão de
+### 3. Gestão de Mesas
+Permite registrar a situação das mesas, identificando se estão ocupadas, sujas, em limpeza ou disponíveis.
+
+### 4. Avaliação dos Alimentos
+Registra notas de qualidade, quantidade de sobras e comentários sobre os alimentos.
+
+## 📊 Painel principal
+
+O sistema apresenta indicadores para facilitar a visualização das informações registradas nos módulos, incluindo:
+
+- Quantidade de pratos cadastrados.
+- Peso total registrado.
+- Tempo médio nas filas.
+- Quantidade de avaliações dos alimentos.
+
+## 🛠️ Tecnologias utilizadas
+
+- **Python:** linguagem principal do projeto.
+- **Flask:** desenvolvimento da aplicação web.
+- **HTML5:** estrutura das páginas.
+- **CSS3:** estilização e identidade visual.
+- **JavaScript:** funcionalidades interativas.
+- **Chart.js:** criação de gráficos.
+- **SQLite:** armazenamento dos registros.
+
+## 📁 Estrutura do projeto
+
+```text
+bovinus_insight/
+│
+├── app.py
+├── database.py
+├── bovinus.db
+├── requirements.txt
+├── README.md
+├── .gitignore
+│
+├── templates/
+│   ├── dashboard.html
+│   ├── pratos.html
+│   ├── filas.html
+│   ├── mesas.html
+│   └── qualidade.html
+│
+└── static/
+    └── css/
+        └── style.css
+```
+
+## ▶️ Como executar o projeto
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/luansilvams06-cmyk/bovinus_insight.git
+```
+
+### 2. Entrar na pasta
+
+```bash
+cd bovinus_insight
+```
+
+### 3. Criar ambiente virtual
+
+```bash
+py -m venv .venv
+```
+
+### 4. Ativar o ambiente virtual
+
+No Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+### 5. Instalar as dependências
+
+```bash
+py -m pip install -r requirements.txt
+```
+
+### 6. Executar a aplicação
+
+```bash
+py app.py
+```
+
+Depois, acesse no navegador:
+
+```text
+http://127.0.0.1:5000
+```
+
+## 🗄️ Banco de dados
+
+O projeto utiliza SQLite para armazenar os registros realizados nos quatro módulos.
+
+As informações são mantidas no banco de dados local, permitindo consultar os registros mesmo após reiniciar a aplicação.
+
+## 📌 Escopo do MVP
+
+O Bovinus Insight foi desenvolvido como um Produto Mínimo Viável (MVP).
+
+Nesta versão:
+
+- Os dados são inseridos manualmente pelos usuários.
+- Os indicadores são calculados a partir dos registros realizados.
+- O sistema não utiliza reconhecimento automático de imagens.
+- Não possui integração com sistemas de pagamento ou controle de estoque.
+- Não realiza identificação pessoal dos clientes.
+
+## 🚀 Possibilidades de evolução
+
+Como melhorias futuras, o projeto poderá receber:
+
+- Relatórios operacionais mais completos.
+- Novos indicadores e gráficos.
+- Coleta automatizada de informações.
+- Melhorias na experiência dos usuários.
+- Integração com outras ferramentas de gestão.
+
+## 🎓 Informações do projeto
+
+**Projeto:** Bovinus Insight  
+**Evento:** Hackathon FMU & Bovinu’S Grill & Beer  
+**Unidade:** Augusta  
+**Instituição:** FMU  
+**Desenvolvimento:** Projeto acadêmico
+
+---
+
+**Bovinus Insight — Inteligência operacional para uma experiência melhor.** 🐂
